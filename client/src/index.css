@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OPTIONAL: Add your global resets or light theming below */
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* You can still style links and buttons using Tailwind utilities */
+a {
+  @apply text-blue-600 hover:text-blue-800 font-medium;
+}
+
+button {
+  @apply px-4 py-2 rounded-md bg-gray-800 text-white hover:bg-gray-700 transition;
+}
