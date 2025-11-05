@@ -1,13 +1,44 @@
 import React, { useState } from "react";
 import AuthLayout from "../layouts/AuthLayout";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Logging in with ${email}`);
+    setMessage("Logging in...");
+
+    try {
+      // 🔗 Backend API call
+      const { data } = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      if (data && data.user) {
+        setMessage("✅ Login successful!");
+        console.log("User:", data.user);
+
+        // Store user in localStorage (temporary)
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Redirect to dashboard (adjust route if needed)
+        window.location.href = "/dashboard";
+      } else {
+        setMessage("⚠️ Invalid response from server.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setMessage(
+        error.response?.data?.message || "❌ Invalid email or password."
+      );
+    }
   };
 
   return (
@@ -60,6 +91,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+
+        {/* Message */}
+        {message && (
+          <p className="text-center text-sm text-gray-700 font-medium">
+            {message}
+          </p>
+        )}
 
         {/* Submit Button */}
         <button

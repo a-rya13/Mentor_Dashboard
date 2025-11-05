@@ -1,12 +1,40 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ added
 import AuthLayout from "../layouts/AuthLayout";
+import axios from "axios";
 
 const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // ✅ added
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Registering user: ${form.name}`);
+    setMessage("Registering...");
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        form
+      );
+
+      if (data && data.user) {
+        setMessage("✅ Registration successful!");
+        console.log("User registered:", data.user);
+
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // ✅ Redirect using React Router instead of window.location
+        setTimeout(() => navigate("/"), 1000);
+      } else {
+        setMessage("⚠️ Unexpected response from server.");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      setMessage(
+        error.response?.data?.message || "❌ Registration failed. Try again."
+      );
+    }
   };
 
   return (
@@ -77,6 +105,13 @@ const Register = () => {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
         </div>
+
+        {/* Message Display */}
+        {message && (
+          <p className="text-center text-sm text-gray-700 font-medium">
+            {message}
+          </p>
+        )}
 
         {/* Submit Button */}
         <button

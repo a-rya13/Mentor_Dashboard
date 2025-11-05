@@ -14,6 +14,7 @@ import sessionRoutes from "./routes/sessionRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 // Environment config
 dotenv.config();
@@ -40,7 +41,7 @@ app.use("/api/sessions", sessionRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/upload", uploadRoutes);
-
+app.use("/api/auth", authRoutes);
 // Health check route
 app.get("/", (req, res) => {
   res.send("🚀 Mentorship API is running...");
