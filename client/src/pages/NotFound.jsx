@@ -22,11 +22,11 @@ const NotFound = () => {
       </div>
 
       {/* Global Styling */}
-      <style jsx>{`
+      {/* <style jsx>{`
         :global(body) {
           @apply bg-gray-100 text-gray-900 antialiased;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 };

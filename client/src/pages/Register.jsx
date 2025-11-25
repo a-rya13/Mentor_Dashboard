@@ -136,11 +136,11 @@ const Register = () => {
       </form>
 
       {/* Background Styling */}
-      <style jsx>{`
+      {/* <style jsx>{`
         :global(body) {
           @apply bg-gradient-to-br from-indigo-100 via-white to-gray-100 text-gray-900 antialiased;
         }
-      `}</style>
+      `}</style> */}
     </AuthLayout>
   );
 };

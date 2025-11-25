@@ -43,9 +43,8 @@ export const getGoals = async (req, res) => {
     let query = {};
     if (user) query.user = user;
 
-    const goals = await Goal.find(query)
-      .populate("user", "name email")
-      .populate("mentor", "name email");
+    const goals = await Goal.find(query).populate("user", "name email");
+    // .populate("mentor", "name email");
     return res.json(goals);
   } catch (err) {
     console.error("goal.getGoals:", err);

@@ -12,7 +12,7 @@ const Login = () => {
     setMessage("Logging in...");
 
     try {
-      // 🔗 Backend API call
+      //  Backend API call
       const { data } = await axios.post(
         "http://localhost:5000/api/auth/login",
         {
@@ -130,11 +130,11 @@ const Login = () => {
       </form>
 
       {/* Background Enhancement */}
-      <style jsx>{`
+      {/* <style jsx>{`
         :global(body) {
           @apply bg-gradient-to-br from-indigo-100 via-white to-gray-100;
         }
-      `}</style>
+      `}</style> */}
     </AuthLayout>
   );
 };

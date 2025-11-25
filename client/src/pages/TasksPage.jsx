@@ -79,7 +79,7 @@ const TasksPage = () => {
       </div>
 
       {/* Global Styling */}
-      <style jsx>{`
+      {/* <style jsx>{`
         :global(body) {
           @apply bg-gray-100 text-gray-900 antialiased;
         }
@@ -91,7 +91,7 @@ const TasksPage = () => {
         p {
           @apply text-gray-800;
         }
-      `}</style>
+      `}</style> */}
     </DashboardLayout>
   );
 };

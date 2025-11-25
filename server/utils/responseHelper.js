@@ -1,29 +1,17 @@
 // utils/responseHelper.js
 
 // ✅ Standard success response
-export const successResponse = (
-  res,
-  data = {},
-  message = "Success",
-  status = 200
-) => {
+export const successResponse = (res, message, data = null, status = 200) => {
   return res.status(status).json({
     success: true,
     message,
-    data,
+    data, // ✔ THIS must contain array / object
   });
 };
 
-// ❌ Standard error response
-export const errorResponse = (
-  res,
-  message = "Server Error",
-  status = 500,
-  error = null
-) => {
+export const errorResponse = (res, message, status = 500) => {
   return res.status(status).json({
     success: false,
     message,
-    error: error ? error.toString() : undefined,
   });
 };
